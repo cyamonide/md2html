@@ -8,7 +8,10 @@
             "type": "shell",
             "command": "g++",
             "args": [
-                "-g", "main.cpp"
+                "-g",
+                "md2html.cpp",
+                "-o",
+                "md2html"
             ],
             "group": {
                 "kind": "build",

@@ -25,7 +25,10 @@ string parseLine(string line) {
 /*
 
     Note: it might not be necessary to look for matching syntax
-    Go through 
+    Go through the string linearly, and keep track of which ones are open and/or closed.
+    If there are unmatched characters...
+
+    
 
 */
 
