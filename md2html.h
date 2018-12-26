@@ -5,14 +5,11 @@
 
 using namespace std;
 
-/**
- * Adds matching HTML tags around a string.
- * 
- * @param line String of text to be wrapped.
- *        tag HTML tag without angle brackets.
- * @return That string of text with HTML tags around it.
- */
-string wrapTags(string line, string tag);
+string resolveLinks(string line);
+string resolveInlineCode(string line);
+string resolveCIB(string line);
+
+string resolveInline(string line);
 
 /**
  * Parses markdown headings indicated by hashtags.
@@ -70,13 +67,5 @@ string parseLine(string line);
 /****************************************/
 /**************** INLINE ****************/
 /****************************************/
-
-string resolveLinks(string line);
-
-string bold(string line);
-
-string italics(string line);
-
-string parseInline(string line);
 
 #endif

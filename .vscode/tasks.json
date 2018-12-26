@@ -6,13 +6,7 @@
         {
             "label": "Build md2html",
             "type": "shell",
-            "command": "g++",
-            "args": [
-                "-g",
-                "md2html.cpp",
-                "-o",
-                "md2html"
-            ],
+            "command": "g++ -g md2html.cpp -o md2html && ./md2html",
             "group": {
                 "kind": "build",
                 "isDefault": true
