@@ -5,9 +5,21 @@
 
 using namespace std;
 
-string resolveLinks(string line);
-string resolveInlineCode(string line);
-string resolveCIB(string line);
+const regex r_code("`[^\\s][^`]*[^\\s]`");
+const regex r_link("[\\[]\\w+[\\]][\\(]\\w+[\\)]");
+const regex r_triple_a("\\*\\*\\*[^\\s][^\\*]*[^\\s]\\*\\*\\*");
+const regex r_triple_u("___[^\\s][^_]*[^\\s]___");
+const regex r_bold_a("\\*\\*[^\\s][^\\*]*[^\\s]\\*\\*");
+const regex r_bold_u("__[^\\s][^_]*[^\\s]__");
+const regex r_italics_a("\\*[^\\s][^\\*]*[^\\s]\\*");
+const regex r_italics_u("_[^\\s][^_]*[^\\s]_");
+
+
+string resolveCode(string line);
+string resolveLink(string line);
+string resolveTriple(string line);
+string resolveBold(string line);
+string resolveItalics(string line);
 
 string resolveInline(string line);
 
