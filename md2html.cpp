@@ -2,21 +2,12 @@
 #include <fstream>
 #include <string>
 #include <stdio.h>
-#include <queue>
 #include <regex>
 #include <map>
-#include <algorithm>
+#include <deque>
 #include "md2html.h"
 
 using namespace std;
-
-// Status flags
-int f_par = 0;  // Paragraph
-int f_ol = 0;   // Ordered list
-int f_ul = 0;   // Unordered list
-int f_bq = 0;   // Blockquote
-int f_cb = 0;   // Codeblock
-
 
 string resolveCode(string line) {
     line = line.substr(1, line.length() - 2);
@@ -121,19 +112,14 @@ string resolveInline(string line) {
     return retval;
 }
 
-// bold recognition will be done with matching ** regex pairs
-
-bool assert_resolveInline(string test, string expected, int num) {
-    string result = resolveInline(test);
-    if (result == expected) {
-        cout << "resolveInline: test" << num << " OK" << endl;
-        return true;
+void writeBuffer(ostream& fout, deque<string> *buf) {
+    while (buf->size() > 3) {
+        fout << buf->back() << "\n";
+        buf->pop_back();
     }
-     
-    cout << "resolveInline test" << num << " expected: " << expected << endl;
-    cout << "\t got: " << result << endl << endl;
-    return false;
 }
+
+bool assert_resolveInline(string test, string expected, int num);
 
 int main() {
     string test1 = "Foobar, foobat, **[Foobar](Foobat)** this better work.";
@@ -152,5 +138,29 @@ int main() {
     string ex4 = "This is <em><strong>A triple</strong></em> test and so <strong><em>is this</em></strong> and <em><strong>this as well</strong></em>.";
     assert_resolveInline(test4, ex4, 4);
 
+    // Filestreams
+    ifstream fin;
+    fin.open("test.md");
+    ofstream fout;
+    fout.open("out.html", ios::app);
+    // Buffer deque
+    deque<string> buf;
+
+    fout.close();
+
     return 0;
+}
+
+// ASSERTION TESTS //
+
+bool assert_resolveInline(string test, string expected, int num) {
+    string result = resolveInline(test);
+    if (result == expected) {
+        cout << "resolveInline: test" << num << " OK" << endl;
+        return true;
+    }
+     
+    cout << "resolveInline test" << num << " expected: " << expected << endl;
+    cout << "\t got: " << result << endl << endl;
+    return false;
 }
