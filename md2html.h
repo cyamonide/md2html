@@ -6,7 +6,8 @@
 using namespace std;
 
 const regex r_code("`[^\\s][^`]*[^\\s]`");
-const regex r_link("[\\[]\\w+[\\]][\\(]\\w+[\\)]");
+const regex r_link("\\[[^\\[\\]\\(\\)]+\\]\\([^\\[\\]\\(\\)]+\\)");
+const regex r_link_title("\\[[^\\[\\]\\(\\)]+\\]\\([^\\[\\]\\(\\)]+ \"[^\\[\\]\\(\\)]+\"\\)");
 const regex r_triple_a("\\*\\*\\*[^\\s][^\\*]*[^\\s]\\*\\*\\*");
 const regex r_triple_u("___[^\\s][^_]*[^\\s]___");
 const regex r_bold_a("\\*\\*[^\\s][^\\*]*[^\\s]\\*\\*");
@@ -15,6 +16,7 @@ const regex r_italics_a("\\*[^\\s][^\\*]*[^\\s]\\*");
 const regex r_italics_u("_[^\\s][^_]*[^\\s]_");
 
 
+// DEPRECATED: Replaced by a simpler implementation using a stack
 class State
 {
 public:
@@ -57,6 +59,27 @@ bool State::isZero() {
 }
 
 
+struct StateInfo
+{
+    string type = "";
+    int data = 0;
+};
+
+
+/*
+        HELPER FUNCTIONS
+*/
+
+bool isList(StateInfo s);
+bool isList(string s);
+
+string ot(string tag);
+string ct(string tag);
+string wrapTags(string tag, string content);
+
+/*
+        INLINE RESOLVES
+*/
 
 string resolveCode(string line);
 string resolveLink(string line);
@@ -66,7 +89,21 @@ string resolveItalics(string line);
 
 string resolveInline(string line);
 
+/*
+        BLOCK RESOLVES
+*/
+
+void resolveList(deque<string> *buf, stack<StateInfo> *state, string thisType);
+
+void resolveLine(deque<string> *buf, stack<StateInfo> *state);
+void closeAllOpen(deque<string> *buf, stack<StateInfo> *state);
+
+/*
+        BUFFER MANAGEMENT
+*/
+
 void writeBuffer(ostream& fout, deque<string> *buf);
+void flushBuffer(ostream& fout, deque<string> *buf);
 
 /**
  * Parses markdown headings indicated by hashtags.

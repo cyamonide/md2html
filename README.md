@@ -2,17 +2,21 @@
 
 Markdown syntax based on [this document](https://www.markdownguide.org/basic-syntax/).  
 
-Additional tools used:
+Additional tools used to help development:
 - [`pandoc`](https://pandoc.org/)
 - [Markdown All In One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) Visual Studio Code extension
+- [Regex101](https://regex101.com/)
+- [Regex Cheat Sheet](http://www.cbs.dtu.dk/courses/27610/regular-expressions-cheat-sheet-v2.pdf)
 
 ## Syntax supported:
 
-- [ ] Headings
-  - [ ] Headings (#'s)
-  - [ ] Headings (Alternate Syntax)
-- [ ] Paragraphs
-- [ ] Line Breaks
+- [x] Headings
+  - [x] Headings (#'s)
+  - [x] Headings (Alternate Syntax)
+- [x] Paragraphs
+  - [x] Single-line paragraph
+  - [x] Multi-line paragraph
+- [x] Line Breaks
 - [x] Emphasis
   - [x] Bold
   - [x] Italic
@@ -22,8 +26,8 @@ Additional tools used:
   - [ ] Nested Blockquotes
   - [ ] Blockquotes with Other Elements
 - [ ] Lists
-  - [ ] Ordered Lists
-  - [ ] Unordered Lists
+  - [x] Ordered Lists
+  - [x] Unordered Lists
   - [ ] Adding Elements in Lists
     - [ ] Paragraphs
     - [ ] Blockquotes
@@ -33,10 +37,10 @@ Additional tools used:
   - [x] Inline Code
   - [ ] Escaping Tick Marks
   - [ ] Code Blocks
-- [ ] Horizontal Rules
+- [x] Horizontal Rules
 - [ ] Links
   - [x] Inline Links
-  - [ ] Adding Titles
+  - [x] Adding Titles
   - [ ] URLs and Email Addresses
   - [ ] Formatting Links
   - [ ] Reference-style Links
