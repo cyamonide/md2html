@@ -1,102 +1,14 @@
 #ifndef MD2HTML
 #define MD2HTML
 
+#include <iostream>
 #include <string>
+#include <deque>
 
 using namespace std;
 
-const regex r_code("`[^\\s][^`]*[^\\s]`");
-const regex r_link("\\[[^\\[\\]\\(\\)]+\\]\\([^\\[\\]\\(\\)]+\\)");
-const regex r_link_title("\\[[^\\[\\]\\(\\)]+\\]\\([^\\[\\]\\(\\)]+ \"[^\\[\\]\\(\\)]+\"\\)");
-const regex r_triple_a("\\*\\*\\*[^\\s][^\\*]*[^\\s]\\*\\*\\*");
-const regex r_triple_u("___[^\\s][^_]*[^\\s]___");
-const regex r_bold_a("\\*\\*[^\\s][^\\*]*[^\\s]\\*\\*");
-const regex r_bold_u("__[^\\s][^_]*[^\\s]__");
-const regex r_italics_a("\\*[^\\s][^\\*]*[^\\s]\\*");
-const regex r_italics_u("_[^\\s][^_]*[^\\s]_");
-
-
-// DEPRECATED: Replaced by a simpler implementation using a stack
-class State
-{
-public:
-    int f_par;
-    int f_ol;
-    int f_ul;
-    int f_bq;
-    int f_cb;
-
-    State(int par, int ol, int ul, int bq, int cb);
-    State(const State &s);
-    ~State();
-
-    bool isZero();
-};
-
-State::State(int par = 0, int ol = 0, int ul = 0, int bq = 0, int cb = 0)
-{
-    f_par = par;
-    f_ol = ol;
-    f_ul = ul;
-    f_bq = bq;
-    f_cb = cb;
-}
-
-State::State(const State &s) {
-    f_par = s.f_par;
-    f_ol = s.f_ol;
-    f_ul = s.f_ul;
-    f_bq = s.f_bq;
-    f_cb = s.f_cb;
-}
-
-State::~State()
-{
-}
-
-bool State::isZero() {
-    return f_par + f_ol + f_ul + f_bq + f_cb == 0;
-}
-
-
-struct StateInfo
-{
-    string type = "";
-    int data = 0;
-};
-
-
-/*
-        HELPER FUNCTIONS
-*/
-
-bool isList(StateInfo s);
-bool isList(string s);
-
-string ot(string tag);
-string ct(string tag);
-string wrapTags(string tag, string content);
-
-/*
-        INLINE RESOLVES
-*/
-
-string resolveCode(string line);
-string resolveLink(string line);
-string resolveTriple(string line);
-string resolveBold(string line);
-string resolveItalics(string line);
-
-string resolveInline(string line);
-
-/*
-        BLOCK RESOLVES
-*/
-
-void resolveList(deque<string> *buf, stack<StateInfo> *state, string thisType);
-
-void resolveLine(deque<string> *buf, stack<StateInfo> *state);
-void closeAllOpen(deque<string> *buf, stack<StateInfo> *state);
+const string infilepath = "../test/test.md";
+const string outfilepath = "../test/out.html";
 
 /*
         BUFFER MANAGEMENT
