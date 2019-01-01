@@ -7,6 +7,8 @@ Additional tools used to help development:
 - [Markdown All In One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) Visual Studio Code extension
 - [Regex101](https://regex101.com/)
 - [Regex Cheat Sheet](http://www.cbs.dtu.dk/courses/27610/regular-expressions-cheat-sheet-v2.pdf)
+- [code-prettify](https://github.com/google/code-prettify)
+- [MathJax](https://www.mathjax.org/)
 
 ## Syntax supported:
 
@@ -46,3 +48,9 @@ Additional tools used to help development:
   - [ ] Reference-style Links
 - [ ] Images
 - [ ] Escaping Characters
+
+<hr>
+
+- [ ] Math (MathJax)
+  - [ ] Inline math
+  - [ ] Display math

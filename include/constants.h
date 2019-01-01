@@ -5,20 +5,24 @@
 
 using namespace std;
 
-const regex r_code("`[^\\s][^`]*[^\\s]`");
-const regex r_link("\\[[^\\[\\]\\(\\)]+\\]\\([^\\[\\]\\(\\)]+\\)");
-const regex r_link_title("\\[[^\\[\\]\\(\\)]+\\]\\([^\\[\\]\\(\\)]+ \"[^\\[\\]\\(\\)]+\"\\)");
-const regex r_triple_a("\\*\\*\\*[^\\s][^\\*]*[^\\s]\\*\\*\\*");
-const regex r_triple_u("___[^\\s][^_]*[^\\s]___");
-const regex r_bold_a("\\*\\*[^\\s][^\\*]*[^\\s]\\*\\*");
-const regex r_bold_u("__[^\\s][^_]*[^\\s]__");
-const regex r_italics_a("\\*[^\\s][^\\*]*[^\\s]\\*");
-const regex r_italics_u("_[^\\s][^_]*[^\\s]_");
+const regex R_CODE("`[^\\s][^`]*[^\\s]`");
+const regex R_LINK("\\[[^\\[\\]\\(\\)]+\\]\\([^\\[\\]\\(\\)]+\\)");
+const regex R_LINK_TITLE("\\[[^\\[\\]\\(\\)]+\\]\\([^\\[\\]\\(\\)]+ \"[^\\[\\]\\(\\)]+\"\\)");
+const regex R_TRIPLE_A("\\*\\*\\*[^\\s][^\\*]*[^\\s]\\*\\*\\*");
+const regex R_TRIPLE_U("___[^\\s][^_]*[^\\s]___");
+const regex R_BOLD_A("\\*\\*[^\\s][^\\*]*[^\\s]\\*\\*");
+const regex R_BOLD_U("__[^\\s][^_]*[^\\s]__");
+const regex R_ITALICS_A("\\*[^\\s][^\\*]*[^\\s]\\*");
+const regex R_ITALICS_U("_[^\\s][^_]*[^\\s]_");
 
-const regex r_heading("#{1,6} .*");
-const regex r_heading_alt("(=+|-+)");
-const regex r_ordered("\\s*\\d+\\. .*");
-const regex r_unordered("\\s*(-|\\*|\\+) .*");
-const regex r_html_tag("\\s*<([A-Za-z0-9]+)*>\\s*");
+const regex R_HEADING("#{1,6} .*");
+const regex R_HEADING_ALT("(=+|-+)");
+const regex R_ORDERED("\\s*\\d+\\. .*");
+const regex R_UNORDERED("\\s*(-|\\*|\\+) .*");
+const regex R_HTML_TAG("\\s*<([A-Za-z0-9]+)*>\\s*");
+const regex R_HORIZONTAL_RULE("(\\*{3,}|-{3,}|_{3,})");
+
+const string FILEPATH_IN = "../test/test.md";
+const string FILEPATH_OUT = "../test/out.html";
 
 #endif

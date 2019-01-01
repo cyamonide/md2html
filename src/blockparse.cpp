@@ -103,7 +103,7 @@ void resolveLine(deque<string> *buf, stack<StateInfo> *state) {
     string line = buf->at(0);
 
     // Headings
-    if (regex_match(line, r_heading)) {
+    if (regex_match(line, R_HEADING)) {
         // Close all open tags
         closeAllOpen(buf, state);
 
@@ -112,7 +112,7 @@ void resolveLine(deque<string> *buf, stack<StateInfo> *state) {
         buf->at(0) = wrapTags("h" + to_string(heading_level), resolveInline(line.substr(heading_level + 1)));
     }
     // Alternate headings
-    else if (regex_match(line, r_heading_alt)) {
+    else if (regex_match(line, R_HEADING_ALT)) {
         // Determine if previous line was heading-compatible (rendered as paragraph)
         if (!regex_match(buf->at(1), regex("<p>.*"))) {
             buf->at(0) = ot("p") + buf->at(0);
@@ -129,17 +129,21 @@ void resolveLine(deque<string> *buf, stack<StateInfo> *state) {
         closeAllOpen(buf, state);
     }
     // Ordered list
-    else if (regex_match(line, r_ordered)) {
+    else if (regex_match(line, R_ORDERED)) {
         // Assumes indentation consistent across tabs/spaces
         resolveList(buf, state, "ol");
     }
     // Unordered list
-    else if (regex_match(line, r_unordered)) {
+    else if (regex_match(line, R_UNORDERED)) {
         resolveList(buf, state, "ul");
     }
     // HTML tag by itself
-    else if (regex_match(line, r_html_tag)) {
+    else if (regex_match(line, R_HTML_TAG)) {
         // Do nothing
+    }
+    // Horizontal rule
+    else if (regex_match(line, R_HORIZONTAL_RULE)) {
+        buf->at(0) = "<hr>";
     }
     // Blank line
     else if (regex_match(line, regex("\\s*"))) {
