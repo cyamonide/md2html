@@ -69,3 +69,21 @@ Another test
 <link>
 
 <foobiz*_>
+
+## List abbreviations
+
+```scheme
+;; (listof Person/lst)
+(define people (list
+                (list "Adrian" 1.85)
+                (list "Adrian's Mom" 1.67)
+                (list "Adrian's borther" 1.49)
+                ))
+
+(define (return-height people)
+  (cond
+    [(empty? people) empty]
+    [else (cons (second (first people)) (return-height (rest people)))]))
+
+(return-height people)
+```

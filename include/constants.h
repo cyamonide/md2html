@@ -21,8 +21,10 @@ const regex R_ORDERED("\\s*\\d+\\. .*");
 const regex R_UNORDERED("\\s*(-|\\*|\\+) .*");
 const regex R_HTML_TAG("\\s*<([A-Za-z0-9]+)*>\\s*");
 const regex R_HORIZONTAL_RULE("(\\*{3,}|-{3,}|_{3,})");
+const regex R_CODEBLOCK_FENCED("(`{3}\\w*|~{3}\\w*)");
+const regex R_CODEBLOCK_TABBED("(\\t| {4})[^\\s].*");
 
-const string FILEPATH_IN = "../test/test.md";
-const string FILEPATH_OUT = "../test/out.html";
+const string FILEPATH_IN = "./test/test.md";
+const string FILEPATH_OUT = "./test/out.html";
 
 #endif

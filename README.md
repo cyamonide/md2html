@@ -10,7 +10,7 @@ Additional tools used to help development:
 - [code-prettify](https://github.com/google/code-prettify)
 - [MathJax](https://www.mathjax.org/)
 
-## Syntax supported:
+## Basic Syntax:
 
 - [x] Headings
   - [x] Headings (#'s)
@@ -38,7 +38,7 @@ Additional tools used to help development:
 - [ ] Code
   - [x] Inline Code
   - [ ] Escaping Tick Marks
-  - [ ] Code Blocks
+  - [x] Code Blocks (tabbed; see Extended Syntax for fenced support)
 - [x] Horizontal Rules
 - [ ] Links
   - [x] Inline Links
@@ -49,7 +49,12 @@ Additional tools used to help development:
 - [ ] Images
 - [ ] Escaping Characters
 
-<hr>
+## Extended Syntax
+
+- [x] Fenced code blocks
+- [ ] Syntax Highlighting (`code-prettify`)
+
+## Other Syntax
 
 - [ ] Math (MathJax)
   - [ ] Inline math

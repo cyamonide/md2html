@@ -102,8 +102,13 @@ void resolveLine(deque<string> *buf, stack<StateInfo> *state) {
     smatch m;
     string line = buf->at(0);
 
+
+    // Codeblock behaviour
+    if (!regex_match(line, R_CODEBLOCK_FENCED) && !state->empty() && state->top().type == "pre") {
+        // Do nothing
+    }
     // Headings
-    if (regex_match(line, R_HEADING)) {
+    else if (regex_match(line, R_HEADING)) {
         // Close all open tags
         closeAllOpen(buf, state);
 
@@ -137,6 +142,36 @@ void resolveLine(deque<string> *buf, stack<StateInfo> *state) {
     else if (regex_match(line, R_UNORDERED)) {
         resolveList(buf, state, "ul");
     }
+    // Tabbed codeblock
+    else if (regex_match(line, R_CODEBLOCK_TABBED)) {
+        // Handle empty state
+        if (state->empty()) {
+            buf->at(0) = ot("pre") + buf->at(0);
+            state->push({"pre"});
+        }
+        else if (state->top().type == "pre") {
+            // Do nothing
+        }
+        // Start new block otherwise
+        else {
+            buf->at(0) = ot("pre") + buf->at(0);
+            state->push({"pre"});
+        }
+    }
+    // Fenced codeblock
+    else if (regex_match(line, R_CODEBLOCK_FENCED)) {
+        // Find language for syntax highlighting support
+        string lang = line.substr(3);
+
+        if (!state->empty() && state->top().type == "pre") {
+            buf->at(0) = ct("pre");
+            state->pop();
+        } else {
+            buf->at(0) = ot("pre");
+            state->push({"pre"});
+        }
+    }
+
     // HTML tag by itself
     else if (regex_match(line, R_HTML_TAG)) {
         // Do nothing
