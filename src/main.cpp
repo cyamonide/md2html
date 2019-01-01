@@ -1,9 +1,8 @@
-#include "md2html.h"
-
 #include "state.h"
-#include "helper.h"
+#include "constants.h"
 #include "blockparse.h"
 #include "inlineparse.h"
+#include "buffer.h"
 
 #include <iostream>
 #include <fstream>
@@ -15,24 +14,6 @@
 #include <stack>
 
 using namespace std;
-
-/*
-        BUFFER MANAGEMENT
-*/
-
-void writeBuffer(ostream& fout, deque<string> *buf) {
-    while (buf->size() > 3) {
-        fout << buf->back() << "\n";
-        buf->pop_back();
-    }
-}
-
-void flushBuffer(ostream& fout, deque<string> *buf) {
-    while (buf->size() > 0) {
-        fout << buf->back() << "\n";
-        buf->pop_back();
-    }
-}
 
 /*
         ASSERTS
@@ -59,9 +40,9 @@ int main() {
 
     // Filestreams
     ifstream fin;
-    fin.open(infilepath);
+    fin.open(FILEPATH_IN);
     ofstream fout;
-    fout.open(outfilepath, ios::ate);
+    fout.open(FILEPATH_OUT, ios::ate);
     // Buffer deque
     deque<string> buf;
     // Line buffer

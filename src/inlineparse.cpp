@@ -17,7 +17,7 @@ string resolveCode(string line) {
 // Requires line be a link and link only
 string resolveLink(string line) {
     // Add Title
-    if (regex_match(line, r_link_title)) {
+    if (regex_match(line, R_LINK_TITLE)) {
         string href = line.substr(line.find("(") + 1);
         string title = href;
 
@@ -68,7 +68,7 @@ string resolveInline(string line) {
     string mType = "";
 
     // Resolve inline code
-    if (regex_search(line, m, r_code)) {
+    if (regex_search(line, m, R_CODE)) {
         if (m.position() < mFirst.first) {
             mFirst.first = m.position();
             mFirst.second = m.str();
@@ -76,7 +76,7 @@ string resolveInline(string line) {
         }
     }
     // Resolve links
-    if (regex_search(line, m, r_link)) {
+    if (regex_search(line, m, R_LINK)) {
         if (m.position() < mFirst.first) {
             mFirst.first = m.position();
             mFirst.second = m.str();
@@ -84,7 +84,7 @@ string resolveInline(string line) {
         }
     }
     // Resolve triple asterisk/italics
-    if (regex_search(line, m, r_triple_a) || regex_search(line, m, r_triple_u)) {
+    if (regex_search(line, m, R_TRIPLE_A) || regex_search(line, m, R_TRIPLE_U)) {
         if (m.position() < mFirst.first) {
             mFirst.first = m.position();
             mFirst.second = m.str();
@@ -92,7 +92,7 @@ string resolveInline(string line) {
         }
     }
     // Resolve bold
-    if (regex_search(line, m, r_bold_a) || regex_search(line, m, r_bold_u)) {
+    if (regex_search(line, m, R_BOLD_A) || regex_search(line, m, R_BOLD_U)) {
         if (m.position() < mFirst.first) {
             mFirst.first = m.position();
             mFirst.second = m.str();
@@ -100,7 +100,7 @@ string resolveInline(string line) {
         }
     }
     // Resolve italics
-    if (regex_search(line, m, r_italics_a) || regex_search(line, m, r_italics_u)) {
+    if (regex_search(line, m, R_ITALICS_A) || regex_search(line, m, R_ITALICS_U)) {
         if (m.position() < mFirst.first) {
             mFirst.first = m.position();
             mFirst.second = m.str();
