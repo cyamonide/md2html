@@ -1,4 +1,4 @@
-# md2html Markdown to HTML converter
+# Markdown to HTML converter | `md2html`
 
 Markdown syntax based on [this document](https://www.markdownguide.org/basic-syntax/).  
 
