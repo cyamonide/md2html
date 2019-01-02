@@ -6,22 +6,19 @@ INCLUDES = -I./include
 vpath %.h ./include
 vpath %.cpp ./src
 
-all: main.o buffer.o helper.o blockparse.o inlineparse.o
+all: main.o helper.o inlineparse.o md2html.o
 	$(CC) $(CFLAGS) $(INCLUDES) -o bin/md2html $^
 
-main.o: main.cpp buffer.o state.h constants.h
+main.o: main.cpp md2html.o constants.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
-buffer.o: buffer.cpp buffer.h
+md2html.o: md2html.cpp md2html.h helper.o inlineparse.o constants.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
-helper.o: helper.cpp helper.h state.h
+helper.o: helper.cpp helper.h md2html.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
-blockparse.o: blockparse.cpp blockparse.h state.h constants.h
-	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
-
-inlineparse.o: inlineparse.cpp inlineparse.h constants.h helper.o
+inlineparse.o: inlineparse.cpp inlineparse.h helper.o constants.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
 clean: 

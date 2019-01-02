@@ -6,7 +6,7 @@
         {
             "label": "Build md2html",
             "type": "shell",
-            "command": "make && bin/md2html",
+            "command": "make",
             "group": {
                 "kind": "build",
                 "isDefault": true

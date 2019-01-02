@@ -1,5 +1,5 @@
-#ifndef MD2HTML_CONSTANTS
-#define MD2HTML_CONSTANTS
+#ifndef MD2HTML_CONSTANTS_H_
+#define MD2HTML_CONSTANTS_H_
 
 #include <regex>
 
@@ -7,7 +7,8 @@ using namespace std;
 
 const regex R_CODE("`[^\\s][^`]*[^\\s]`");
 const regex R_LINK("\\[[^\\[\\]\\(\\)]+\\]\\([^\\[\\]\\(\\)]+\\)");
-const regex R_LINK_TITLE("\\[[^\\[\\]\\(\\)]+\\]\\([^\\[\\]\\(\\)]+ \"[^\\[\\]\\(\\)]+\"\\)");
+const regex R_LINK_TITLE(
+    "\\[[^\\[\\]\\(\\)]+\\]\\([^\\[\\]\\(\\)]+ \"[^\\[\\]\\(\\)]+\"\\)");
 const regex R_TRIPLE_A("\\*\\*\\*[^\\s][^\\*]*[^\\s]\\*\\*\\*");
 const regex R_TRIPLE_U("___[^\\s][^_]*[^\\s]___");
 const regex R_BOLD_A("\\*\\*[^\\s][^\\*]*[^\\s]\\*\\*");

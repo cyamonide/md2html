@@ -1,5 +1,5 @@
-#ifndef MD2HTML_INLINE_PARSE
-#define MD2HTML_INLINE_PARSE
+#ifndef MD2HTML_INLINE_PARSE_H_
+#define MD2HTML_INLINE_PARSE_H_
 
 #include <iostream>
 #include <string>

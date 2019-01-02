@@ -1,19 +1,17 @@
-#ifndef MD2HTML_HELPER
-#define MD2HTML_HELPER
-
-#include "state.h"
+#ifndef MD2HTML_HELPER_H_
+#define MD2HTML_HELPER_H_
 
 #include <iostream>
 #include <string>
 
-using namespace std;
+#include "md2html.h"
 
-bool isList(StateInfo s);
-bool isList(string s);
+bool isList(Tag s);
+bool isList(std::string s);
 
 // Open and close tag formatters
-string ot(string tag);
-string ct(string tag);
-string wrapTags(string tag, string content);
+std::string ot(std::string tag);
+std::string ct(std::string tag);
+std::string wrapTags(std::string tag, std::string content);
 
 #endif
